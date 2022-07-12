@@ -1,79 +1,29 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+set scrolloff=5
+set incsearch
+map Q gq
+
+" Custom settings
+set nu
+set relativenumber
+
+"mark space as a leader key
+let mapleader=" "
+"Make sure that the space doesn't have any mapping henceforth
+nnoremap <SPACE> <Nop>
+" Custom key mapping
+map <leader>f <Action>(GotoFile)
+map <leader>g <Action>(FindInPath)
+map <leader>b <Action>(Switcher)
+map <leader>c <Action>($Copy)
+map <leader>p <Action>($Paste)
+map <leader>s <Action>(SaveAll)
+map <leader>u <Action>(Vcs.RollbackChangedLines)
+map <leader>x <Action>(CloseEditor)
+map <leader>i <Action>(JumpToCaller)
+
+" Plugin
 set surround
 set easymotion
-set highlightedyank
-set relativenumber
-set number 
-let g:highlightedyank_highlight_duration = "100"
-let g:highlightedyank_highlight_color = "rgba(96, 51, 163)"
-runtime macros/matchit.vim:
-nnoremap cc ddko
-#in
-nnoremap <c-j> mzj:s/^\\s*\\n//i<CR>`z:noh<CR>
-nnoremap <c-k> mzk:s/^\\s*\\n//i<CR>`z:noh<CR>
-nnoremap J :<CR>mzo<Esc>`z:<CR>
-nnoremap K :<CR>mzO<Esc>`z:<CR>
-augroup numbertoggle
-autocmd!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-autocmd BufEnter,FocusGained,InsertLeave * set rnu
-
-autocmd BufLeave,FocusLost,InsertEnter * set nornu
-
-augroup END
-
