@@ -53,9 +53,9 @@ nnoremap gt :action GotoTest<CR>
 nnoremap <leader>u :action FindUsages<CR>
 
 "Current file commands
-nmap ;r <action>(RenameFile)
-nmap ;e <action>(RenameElement)
-nmap ;; <Plug>(easymotion-s)
+nmap <leader>r <action>(RenameFile)
+nmap <leader>e <action>(RenameElement)
+nmap s <Plug>(easymotion-s)
 
 
 " Plugin
