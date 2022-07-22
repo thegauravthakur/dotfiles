@@ -1,6 +1,3 @@
-"" Source your .vimrc
-"source ~/.vimrc
-
 set scrolloff=5
 set incsearch
 map Q gq
@@ -8,22 +5,63 @@ map Q gq
 " Custom settings
 set nu
 set relativenumber
+set easymotion
 
 "mark space as a leader key
 let mapleader=" "
 "Make sure that the space doesn't have any mapping henceforth
 nnoremap <SPACE> <Nop>
 " Custom key mapping
-map <leader>f <Action>(GotoFile)
-map <leader>g <Action>(FindInPath)
-map <leader>b <Action>(Switcher)
+map <leader>o <Action>(GotoFile)
+map <leader>f <Action>(Find)
+map <leader>F <Action>(FindInPath)
 map <leader>c <Action>($Copy)
 map <leader>p <Action>($Paste)
 map <leader>s <Action>(SaveAll)
 map <leader>u <Action>(Vcs.RollbackChangedLines)
-map <leader>x <Action>(CloseEditor)
-map <leader>i <Action>(JumpToCaller)
+nmap <leader>i <action>(Generate)
+nmap <leader>- <action>(SplitHorizontally)
+nmap <leader>/ <action>(SplitVertically)
+nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+
+"NERDTree
+nmap <leader>n :NERDTreeFocus<CR>
+nmap <leader>nc :NERDTreeFind<CR>
+
+"Motion
+nmap ml <Action>(NextSplitter)
+nmap mh <Action>(PrevSplitter)
+nmap mm :action MoveEditorToOppositeTabGroup<CR>
+
+"Tabs
+nnoremap <s-TAB> :action PreviousTab<CR>
+nnoremap <TAB> :action NextTab<CR>
+
+"Quiting actions
+nmap <leader>x <Action>(CloseEditor)
+nmap <leader>qa <Action>(CloseAllEditors)
+nmap <leader>X <Action>(CloseAllEditorsButActive)
+
+"Motion commands
+nmap gf <action>(Forward)
+nmap gb <action>(Back)
+nmap gd <action>(GotoDeclaration)
+nnoremap gi :action GotoImplementation<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap <leader>u :action FindUsages<CR>
+
+"Current file commands
+nmap ;r <action>(RenameFile)
+nmap ;e <action>(RenameElement)
+nmap ;; <Plug>(easymotion-s)
+
 
 " Plugin
 set surround
 set easymotion
+set NERDTree
+
+"Settings
+set ic
