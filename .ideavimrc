@@ -1,46 +1,51 @@
-set scrolloff=5
-set incsearch
-map Q gq
-
-" Custom settings
+"Settings
 set nu
 set relativenumber
+set scrolloff=5
+set incsearch
+set ic
+
+"Plugin
+set surround
+set easymotion
+set NERDTree
 set easymotion
 
-"mark space as a leader key
+"Mark space as a leader key
 let mapleader=" "
+
 "Make sure that the space doesn't have any mapping henceforth
 nnoremap <SPACE> <Nop>
-" Custom key mapping
+
+"Custom key mapping
 map <leader>o <Action>(GotoFile)
 map <leader>f <Action>(Find)
 map <leader>F <Action>(FindInPath)
-map <leader>c <Action>($Copy)
+map <leader>c <Action>($Copy)<Esc>
 map <leader>p <Action>($Paste)
 map <leader>s <Action>(SaveAll)
-map <leader>u <Action>(Vcs.RollbackChangedLines)
-nmap <leader>i <action>(Generate)
 nmap <leader>- <action>(SplitHorizontally)
 nmap <leader>/ <action>(SplitVertically)
 nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+nmap U <action>($Redo)
 
 "NERDTree
 nmap <leader>n :NERDTreeFocus<CR>
 nmap <leader>nc :NERDTreeFind<CR>
 
-"Motion
-nmap ml <Action>(NextSplitter)
+"Navigate between tabs
+map ml <Action>(NextSplitter)
 nmap mh <Action>(PrevSplitter)
 nmap mm :action MoveEditorToOppositeTabGroup<CR>
 
-"Tabs
+"Change Tabs
 nnoremap <s-TAB> :action PreviousTab<CR>
 nnoremap <TAB> :action NextTab<CR>
 
 "Quiting actions
 nmap <leader>x <Action>(CloseEditor)
-nmap <leader>qa <Action>(CloseAllEditors)
 nmap <leader>X <Action>(CloseAllEditorsButActive)
+nmap <leader>qa <Action>(CloseAllEditors)
 
 "Motion commands
 nmap gf <action>(Forward)
@@ -52,16 +57,9 @@ nnoremap gE :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
 nnoremap <leader>u :action FindUsages<CR>
 
+nmap <A-u> <Action>(Vcs.RollbackChangedLines)
+
 "Current file commands
 nmap <leader>r <action>(RenameFile)
 nmap <leader>e <action>(RenameElement)
-nmap s <Plug>(easymotion-s)
-
-
-" Plugin
-set surround
-set easymotion
-set NERDTree
-
-"Settings
-set ic
+nmap s <Action>(AceAction)
