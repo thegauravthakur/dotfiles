@@ -1,65 +1,110 @@
-"Settings
-set nu
-set relativenumber
+" vim settings
 set scrolloff=5
+set history=1000
+
+" status bar
+set showmode
+
+" leader
+map <space> <nop>
+let mapleader="\<space>"
+
+" find and replace
+set hlsearch
 set incsearch
-set ic
-
-"Plugin
-set surround
-set easymotion
-set NERDTree
-set easymotion
-
-"Mark space as a leader key
-let mapleader=" "
-
-"Make sure that the space doesn't have any mapping henceforth
-nnoremap <SPACE> <Nop>
-
-"Custom key mapping
+set ignorecase
+set smartcase
+set gdefault
+nmap <leader>nh :noh<CR>
 map <leader>o <Action>(GotoFile)
 map <leader>f <Action>(Find)
-map <leader>F <Action>(FindInPath)
-map <leader>c <Action>($Copy)<Esc>
-map <leader>p <Action>($Paste)
-map <leader>s <Action>(SaveAll)
-nmap <leader>- <action>(SplitHorizontally)
-nmap <leader>/ <action>(SplitVertically)
-nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
-nmap U <action>($Redo)
 
-"NERDTree
-nmap <leader>n :NERDTreeFocus<CR>
-nmap <leader>nc :NERDTreeFind<CR>
+" ideavim settings
+set ideajoin
+set ideamarks
+set idearefactormode=normal
+set ideastatusicon=gray
 
-"Navigate between tabs
-map ml <Action>(NextSplitter)
-nmap mh <Action>(PrevSplitter)
-nmap mm :action MoveEditorToOppositeTabGroup<CR>
+" buffer (buffer < window < tab)
+nmap <leader>xx <Action>(CloseContent)
+nmap <leader>xa <Action>(CloseAllEditors)
+nmap <leader>xo <Action>(CloseAllEditorsButActive)
+nmap <leader>xp <Action>(CloseAllUnpinnedEditors)
 
-"Change Tabs
+" navigate between tabs
 nnoremap <s-TAB> :action PreviousTab<CR>
 nnoremap <TAB> :action NextTab<CR>
 
-"Quiting actions
-nmap <leader>x <Action>(CloseEditor)
-nmap <leader>X <Action>(CloseAllEditorsButActive)
-nmap <leader>qa <Action>(CloseAllEditors)
+" window splitting/navigation mappings
+nnoremap <S-\> :action SplitVertically<CR>
+nnoremap <S--> :action SplitHorizontally<CR>
+nnoremap <S-=> :action Unsplit<CR>
+nnoremap <S-m> :action MoveEditorToOppositeTabGroup<CR>
+sethandler <S-j> a:vim
+sethandler <S-k> a:vim
+nnoremap <S-h> <c-w>h
+nnoremap <S-l> <c-w>l
+nnoremap <S-j> <c-w>j
+nnoremap <s-k> <c-w>k
 
-"Motion commands
-nmap gf <action>(Forward)
+" terminal
+nnoremap <S-D-j> :action ActivateTerminalToolWindow<CR>
+nmap <leader>tt <Action>(ActivateTerminalToolWindow)
+nmap <leader>tc <Action>(Terminal.OpenInTerminal)
+
+" goto
 nmap gb <action>(Back)
+nmap gf <action>(Forward)
 nmap gd <action>(GotoDeclaration)
-nnoremap gi :action GotoImplementation<CR>
+nmap gD <Action>(GotoTypeDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gI <Action>(QuickImplementations)
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
-nnoremap <leader>u :action FindUsages<CR>
 
-nmap <A-u> <Action>(Vcs.RollbackChangedLines)
 
-"Current file commands
-nmap <leader>r <action>(RenameFile)
-nmap <leader>e <action>(RenameElement)
-nmap s <Action>(AceAction)
+" bookmark
+nmap mm <Action>(ToggleBookmark)
+nmap ms <Action>(ShowBookmarks)
+
+" vcs
+nmap <leader>v <Action>(VcsGroups)
+
+" undo and redo
+nmap U <action>($Redo)
+nnoremap <leader>gu :action Vcs.RollbackChangedLines<CR>
+
+" rename
+nmap <leader>rf <action>(RenameFile)
+nmap <leader>re <action>(RenameElement)
+
+" text-object (bundle plugin)
+set vim-paragraph-motion
+set textobj-indent
+set argtextobj
+
+" jump-motion (required idea plugin: IdeaVim-EasyMotion, AceJump)
+set easymotion
+
+" highlight yank (bundle plugin)
+set highlightedyank
+
+" string manipulate (required idea plugin: String Manipulation)
+nmap <leader>ss <Action>(osmedile.intellij.stringmanip.PopupChoiceAction)
+
+" surround (bundle plugin)
+" usage: https://github.com/tpope/vim-surround
+set surround
+
+" exchange (bundle plugin)
+" usage: https://github.com/tommcdo/vim-exchange
+set exchange
+
+" nerdtree (bundle plugin)
+set NERDTree
+nnoremap <leader>nc :NERDTreeFind<CR>
+
+" replace with register (bundle plugin)
+" usage: https://github.com/vim-scripts/ReplaceWithRegister
+set ReplaceWithRegister
