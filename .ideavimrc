@@ -18,6 +18,9 @@ set gdefault
 nmap <leader>nh :noh<CR>
 map <leader>o <Action>(GotoFile)
 map <leader>f <Action>(Find)
+map <leader>F <Action>(FindInPath)
+"map s <Action>(AceAction)
+map <D-j> <Action>(SelectNextOccurrence)
 
 " ideavim settings
 set ideajoin
@@ -36,37 +39,41 @@ nnoremap <s-TAB> :action PreviousTab<CR>
 nnoremap <TAB> :action NextTab<CR>
 
 " window splitting/navigation mappings
-nnoremap <S-\> :action SplitVertically<CR>
-nnoremap <S--> :action SplitHorizontally<CR>
-nnoremap <S-=> :action Unsplit<CR>
-nnoremap <S-m> :action MoveEditorToOppositeTabGroup<CR>
-sethandler <S-j> a:vim
-sethandler <S-k> a:vim
-nnoremap <S-h> <c-w>h
-nnoremap <S-l> <c-w>l
-nnoremap <S-j> <c-w>j
-nnoremap <s-k> <c-w>k
+nnoremap <Esc>i :action SplitVertically<CR>
+nnoremap <Esc>- :action SplitHorizontally<CR>
+nnoremap <Esc>= :action Unsplit<CR>
+nnoremap <Esc>m :action MoveEditorToOppositeTabGroup<CR>
+sethandler <leader>h a:vim
+sethandler <leader>l a:vim
+sethandler <leader>j a:vim
+sethandler <leader>k a:vim
+nmap <Esc>h <c-w>h
+nmap <esc>l <c-w>l
+nmap <esc>j <c-w>j
+nmap <esc>k <c-w>k
 
 " terminal
 nnoremap <S-D-j> :action ActivateTerminalToolWindow<CR>
-nmap <leader>tt <Action>(ActivateTerminalToolWindow)
-nmap <leader>tc <Action>(Terminal.OpenInTerminal)
+nmap <leader>tt <Action>(ActivateTerminalToolWinjjdow)
+nmap <leader>tc <Action>(Terminal.OpennTerminal)
 
 " goto
 nmap gb <action>(Back)
 nmap gf <action>(Forward)
 nmap gd <action>(GotoDeclaration)
-nmap gD <Action>(GotoTypeDeclaration)
+nmap gD <Action>(GotoTypeDecjlaration)
 nmap gi <Action>(GotoImplementation)
 nmap gI <Action>(QuickImplementations)
+nmap gc <Action>(VcsShowNextChangeMarker)
+nmap gC <Action>(VcsShowPrevChangeMarker)
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
 
-
 " bookmark
 nmap mm <Action>(ToggleBookmark)
 nmap ms <Action>(ShowBookmarks)
+nmap mn <Action>(GotoNextBookmarkInEditor)
 
 " vcs
 nmap <leader>v <Action>(VcsGroups)
@@ -78,6 +85,14 @@ nnoremap <leader>gu :action Vcs.RollbackChangedLines<CR>
 " rename
 nmap <leader>rf <action>(RenameFile)
 nmap <leader>re <action>(RenameElement)
+
+" copilot
+nmap <leader>cc <action>(copilot.chat.show)
+
+" new file
+nmap <leader>ne <action>(NewElement)
+nmap <leader>nf <action>(NewFile)
+nmap <leader>rf <action>(RenameFile)
 
 " text-object (bundle plugin)
 set vim-paragraph-motion
@@ -105,6 +120,12 @@ set exchange
 set NERDTree
 nnoremap <leader>nc :NERDTreeFind<CR>
 
+" sneak (Install IdeaVim-sneak plugin)
+set sneak
+
 " replace with register (bundle plugin)
 " usage: https://github.com/vim-scripts/ReplaceWithRegister
 set ReplaceWithRegister
+
+" git
+nmap <leader>gs <Action>(GitToolBox.SwitchRecentBranches)
