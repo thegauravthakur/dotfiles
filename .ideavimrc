@@ -1,24 +1,22 @@
-" vim settings
-set scrolloff=5
-set history=1000
-
-" status bar
-set showmode
-
-" leader
+"leader
 map <space> <nop>
 let mapleader="\<space>"
 
-" find and replace
+" vim settings
+set scrolloff = 7 
+set history = 1000
+set showmode
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set gdefault
-nmap <leader>nh :noh<CR>
+
+nmap <leader>nh :nohlsearch<CR>
 map <leader>o <Action>(GotoFile)
 map <leader>f <Action>(Find)
 map <leader>F <Action>(FindInPath)
+
 "map s <Action>(AceAction)
 map <D-j> <Action>(SelectNextOccurrence)
 
@@ -28,29 +26,55 @@ set ideamarks
 set idearefactormode=normal
 set ideastatusicon=gray
 
-" buffer (buffer < window < tab)
-nmap <leader>xx <Action>(CloseContent)
+
 nmap <leader>xa <Action>(CloseAllEditors)
 nmap <leader>xo <Action>(CloseAllEditorsButActive)
 nmap <leader>xp <Action>(CloseAllUnpinnedEditors)
+nmap <leader>xl <Action>(CloseAllToTheRight)
+nmap <leader>xh <Action>(CloseAllToTheLeft)
+
+let g:WhichKeyDesc_close_all_editors = '<leader>xa close all editors'
+let g:WhichKeyDesc_close_all_editors_but_active = '<leader>xo close all editors but active'
+let g:WhichKeyDesc_close_all_unpinned_editors = '<leader>xp close all unpinned editors'
+let g:WhichKeyDesc_close_all_to_the_right = '<leader>xl close all to the right'
+let g:WhichKeyDesc_close_all_to_the_left = '<leader>xh close all to the left'
 
 " navigate between tabs
 nnoremap <s-TAB> :action PreviousTab<CR>
 nnoremap <TAB> :action NextTab<CR>
 
+nmap <leader>1 <Action>(GoToTab1)
+nmap <leader>2 <Action>(GoToTab2)
+nmap <leader>3 <Action>(GoToTab3)
+nmap <leader>4 <Action>(GoToTab4)
+nmap <leader>5 <Action>(GoToTab5)
+nmap <leader>6 <Action>(GoToTab6)
+nmap <leader>7 <Action>(GoToTab7)
+nmap <leader>8 <Action>(GoToTab8)
+nmap <leader>9 <Action>(GoToTab9)
+
+sethandler <C-w>h n:vim
+sethandler <C-w>l n:vim
+sethandler <C-w>j n:vim
+sethandler <C-w>k n:vim
+
+nnoremap gh <C-w>h
+nnoremap gl <C-w>l
+nnoremap gj <C-w>j
+nnoremap gk <C-w>k
+
+let g:WhichKeyDesc_tab_move_left = 'gh move current tab left'
+let g:WhichKeyDesc_tab_move_right = 'gl move current tab right'
+let g:WhichKeyDesc_tab_move_down = 'gj move current tab down'
+let g:WhichKeyDesc_tab_move_up = 'gk move current tab up'
+
+
 " window splitting/navigation mappings
-nnoremap <Esc>i :action SplitVertically<CR>
-nnoremap <Esc>- :action SplitHorizontally<CR>
-nnoremap <Esc>= :action Unsplit<CR>
-nnoremap <Esc>m :action MoveEditorToOppositeTabGroup<CR>
-sethandler <leader>h a:vim
-sethandler <leader>l a:vim
-sethandler <leader>j a:vim
-sethandler <leader>k a:vim
-nmap <Esc>h <c-w>h
-nmap <esc>l <c-w>l
-nmap <esc>j <c-w>j
-nmap <esc>k <c-w>k
+nnoremap <leader>i :action SplitVertically<CR>
+nnoremap <leader>- :action SplitHorizontally<CR>
+
+"nnoremap <Esc>= :action Unsplit<CR>
+nnoremap <leader>me :action MoveEditorToOppositeTabGroup<CR>
 
 " terminal
 nnoremap <S-D-j> :action ActivateTerminalToolWindow<CR>
@@ -61,7 +85,7 @@ nmap <leader>tc <Action>(Terminal.OpennTerminal)
 nmap gb <action>(Back)
 nmap gf <action>(Forward)
 nmap gd <action>(GotoDeclaration)
-nmap gD <Action>(GotoTypeDecjlaration)
+nmap gD <Action>(GotoTypeDeclaration)
 nmap gi <Action>(GotoImplementation)
 nmap gI <Action>(QuickImplementations)
 nmap gc <Action>(VcsShowNextChangeMarker)
@@ -69,6 +93,20 @@ nmap gC <Action>(VcsShowPrevChangeMarker)
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
+nmap gs <Action>(MoveEditorToOppositeTabGroup)
+
+let g:WhichKeyDesc_goto_back = 'gb go back'
+let g:WhichKeyDesc_goto_forward = 'gf go forward'
+let g:WhichKeyDesc_goto_declaration = 'gd go to declaration'
+let g:WhichKeyDesc_goto_type_declaration = 'gD go to type declaration'
+let g:WhichKeyDesc_goto_implementation = 'gi go to implementation'
+let g:WhichKeyDesc_goto_quick_implementations = 'gI go to quick implementations'
+let g:WhichKeyDesc_goto_next_change_marker = 'gc go to next change marker'
+let g:WhichKeyDesc_goto_prev_change_marker = 'gC go to prev change marker'
+let g:WhichKeyDesc_goto_next_error = 'ge go to next error'
+let g:WhichKeyDesc_goto_prev_error = 'gE go to prev error'
+let g:WhichKeyDesc_goto_test = 'gt go to test'
+let g:WhichKeyDesc_move_editor_to_opposite_tab_group = 'gs move editor to opposite tab group'
 
 " bookmark
 nmap mm <Action>(ToggleBookmark)
@@ -85,6 +123,8 @@ nnoremap <leader>gu :action Vcs.RollbackChangedLines<CR>
 " rename
 nmap <leader>rf <action>(RenameFile)
 nmap <leader>re <action>(RenameElement)
+
+
 
 " copilot
 nmap <leader>cc <action>(copilot.chat.show)
@@ -118,10 +158,26 @@ set exchange
 
 " nerdtree (bundle plugin)
 set NERDTree
-nnoremap <leader>nc :NERDTreeFind<CR>
+
+nnoremap <leader>et :NERDTreeToggle<CR>
+nnoremap <leader>eo :NERDTreeFocus<CR>
+nnoremap <leader>ec :NERDTreeClose<CR>
+nnoremap <leader>ef :NERDTreeFind<CR>
+nnoremap <leader>er :NERDTreeRefreshRoot<CR>
+
+let g:WhichKeyDesc_nerdtree_toggle = '<leader>et toggle explorer panel'
+let g:WhichKeyDesc_nerdtree_focus = '<leader>eo focus explorer panel'
+let g:WhichKeyDesc_nerdtree_close = '<leader>ec close explorer panel'
+let g:WhichKeyDesc_nerdtree_find = '<leader>ef find and focus current file in explorer panel'
+let g:WhichKeyDesc_nerdtree_refresh = '<leader>er refresh explorer panel'
 
 " sneak (Install IdeaVim-sneak plugin)
 set sneak
+
+" which-key (bundle plugin)
+set which-key
+set timeoutlen=3000
+let g:WhichKey_ProcessUnknownMappings = "false"
 
 " replace with register (bundle plugin)
 " usage: https://github.com/vim-scripts/ReplaceWithRegister
@@ -129,3 +185,9 @@ set ReplaceWithRegister
 
 " git
 nmap <leader>gs <Action>(GitToolBox.SwitchRecentBranches)
+
+" Scratch File
+map <leader>ns <Action>(NewScratchFile)
+
+map <leader>RR <Action>(Refactorings.QuickListPopupAction)
+map <leader>sw <Action>(SurroundWith)
