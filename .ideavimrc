@@ -3,8 +3,10 @@ map <space> <nop>
 let mapleader="\<space>"
 
 " vim settings
-set scrolloff = 7 
-set history = 1000
+set scrolloff=7
+set history=1000
+set relativenumber
+set number
 set showmode
 set hlsearch
 set incsearch
@@ -77,9 +79,11 @@ nnoremap <leader>- :action SplitHorizontally<CR>
 nnoremap <leader>me :action MoveEditorToOppositeTabGroup<CR>
 
 " terminal
-nnoremap <S-D-j> :action ActivateTerminalToolWindow<CR>
-nmap <leader>tt <Action>(ActivateTerminalToolWinjjdow)
-nmap <leader>tc <Action>(Terminal.OpennTerminal)
+" nnoremap <S-D-j> :action ActivateTerminalToolWindow<CR>
+" nmap <leader>tt <Action>(ActivateTerminalToolWinjjdow)
+" nmap <leader>tc <Action>(Terminal.OpennTerminal)
+"nmap <M-j> :action EditorCloneCaretBelow<CR>
+"nmap <M-k> :action EditorCloneCaretAbove<CR>
 
 " goto
 nmap gb <action>(Back)
@@ -155,6 +159,28 @@ set surround
 " exchange (bundle plugin)
 " usage: https://github.com/tommcdo/vim-exchange
 set exchange
+
+" vim-multiple-cursors (bundle plugin)
+set multiple-cursors
+
+nmap <M-j> <Plug>NextWholeOccurrence
+xmap <M-j> <Plug>NextWholeOccurrence
+nmap <D-j> <Plug>NextOccurrence
+xmap <D-j> <Plug>NextOccurrence
+xmap <M-s> <Plug>SkipOccurrence
+xmap <M-k> <Plug>RemoveOccurrence
+
+nmap <leader><D-j> <Plug>AllWholeOccurrences
+xmap <leader><D-j> <Plug>AllWholeOccurrences
+nmap <leader><M-j> <Plug>AllOccurrences
+xmap <leader><M-j> <Plug>AllOccurrences
+
+let g:WhichKeyDesc_next_whole_occurrence = '<M-j> select next whole occurrence'
+let g:WhichKeyDesc_next_occurrence = '<D-j> select next occurrence'
+let g:WhichKeyDesc_skip_occurrence = '<M-s> skip occurrence'
+let g:WhichKeyDesc_remove_occurrence = '<M-k> remove occurrence'
+let g:WhichKeyDesc_all_whole_occurrences = '<leader><D-j> select all whole occurrences'
+let g:WhichKeyDesc_all_occurrences = '<leader><M-j> select all occurrences'
 
 " nerdtree (bundle plugin)
 set NERDTree
