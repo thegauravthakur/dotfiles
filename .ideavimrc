@@ -84,9 +84,9 @@ nmap gI <Action>(QuickImplementations)
 nmap g; <Action>(VcsShowNextChangeMarker)
 nmap g, <Action>(VcsShowPrevChangeMarker)
 nmap gu <Action>(FindUsages)
-nnoremap ge :action GotoNextError<CR>
-nnoremap gE :action GotoPreviousError<CR>
-nnoremap gt :action GotoTest<CR>
+nmap ge :action GotoNextError<CR>
+nmap gE :action ShowErrorDescription<CR>
+nmap gt :action GotoTest<CR>
 nmap gs <Action>(MoveEditorToOppositeTabGroup)
 
 " WhichKey Descriptions for Navigation Commands
@@ -99,7 +99,7 @@ let g:WhichKeyDesc_goto_quick_implementations = 'gI go to quick implementations'
 let g:WhichKeyDesc_goto_next_change_marker = 'gc go to next change marker'
 let g:WhichKeyDesc_goto_prev_change_marker = 'gC go to prev change marker'
 let g:WhichKeyDesc_goto_next_error = 'ge go to next error'
-let g:WhichKeyDesc_goto_prev_error = 'gE go to prev error'
+let g:WhichKeyDesc_goto_prev_error = 'gE show error description'
 let g:WhichKeyDesc_goto_test = 'gt go to test'
 let g:WhichKeyDesc_move_editor_to_opposite_tab_group = 'gs move editor to opposite tab group'
 let g:WhichKeyDesc_find_usages = 'gu find usages'
@@ -113,6 +113,7 @@ nmap m; <Action>(GotoNextBookmarkInEditor)
 nmap <leader>gg :action Vcs.QuickListPopupAction<CR>
 nmap <leader>gu :action Vcs.RollbackChangedLines<CR>
 nmap <leader>gb :action Git.Branches<CR>
+nmap <leader>gs <Action>(GitToolBox.SwitchRecentBranches)
 
 " Undo and Redo
 nmap U <action>($Redo)
@@ -120,9 +121,6 @@ nmap U <action>($Redo)
 " Rename Actions
 nmap <leader>rf <action>(RenameFile)
 nmap <leader>re <action>(RenameElement)
-
-" Copilot
-nmap <leader>cc <action>(copilot.chat.show)
 
 " File Management
 nmap <leader>ne <action>(NewElement)
@@ -181,9 +179,6 @@ set sneak
 set which-key
 set timeoutlen=3000
 let g:WhichKey_ProcessUnknownMappings = "false"
-
-" Git Integration
-nmap <leader>gs <Action>(GitToolBox.SwitchRecentBranches)
 
 " Scratch File
 map <leader>ns <Action>(NewScratchFile)
