@@ -1,0 +1,60 @@
+Generate a Git commit message using Conventional Commits specification with the following guidelines:
+
+1. Conventional Commits Structure:
+<type>[optional scope]: <description>
+[optional body]
+[optional footer(s)]
+
+2. Types (Choose Appropriately):
+- feat: New feature for the user
+- fix: Bug fix
+- docs: Documentation changes
+- style: Formatting, missing semi colons, etc.
+- refactor: Refactoring production code
+- test: Adding or modifying tests
+- chore: Maintenance tasks, updates to build processes
+- perf: Performance improvements
+- ci: CI/CD pipeline changes
+- build: Build system changes
+- revert: Reverting previous commits
+
+3. Scope (Optional):
+- Use parentheses to specify the component or module affected
+- Examples: (auth), (database), (ui), (api)
+
+4. Subject Line Rules:
+- Use imperative, present tense
+- Capitalize first letter
+- No period at the end
+- Keep under 50 characters
+- Clearly and concisely describe the change
+
+5. Body Guidelines:
+- Explain motivation for the change
+- Use bullet points (starting with -)
+- Contrast with previous behavior
+- Use multiple lines if needed
+- Wrap at 72 characters
+
+6. Footer (Optional):
+- Reference issue numbers
+- Indicate breaking changes with BREAKING CHANGE:
+
+7. Examples:
+- "feat(auth): add multi-factor authentication"
+- "fix(database): resolve connection leak in user service"
+- "docs(readme): update installation instructions"
+- "refactor(api): simplify error handling middleware"
+
+8. Breaking Changes:
+- Indicate significant changes that might break existing functionality
+- Use BREAKING CHANGE: in the footer
+- Explain the migration path
+
+Constraints:
+- Follow Conventional Commits specification
+- Be precise and informative
+- Don't make gramatical errors
+- Separate concerns into different commits
+- Use `` where specifying to code element
+- No need to wrap output in ``` (code section)
